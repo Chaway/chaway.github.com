@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          Useful Commands - Chaway的博客 | Chaway&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="https://github.com/Chaway/chaway.github.com/tree/master/2017/03/19/command/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="https://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Chaway&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <!--
+                        <li>
+                             <a href="/">Home</a>
+                         </li>
+                    -->
+
+                     
+                     <li>
+                           <a href="/">Home</a>
+                     </li>                    
+                     
+                     <li>
+                           <a href="/tags">Tags</a>
+                     </li>                    
+                     
+                     <li>
+                           <a href="/archives">Archives</a>
+                     </li>                    
+                     
+                     <li>
+                           <a href="/about">About Me</a>
+                     </li>                    
+                     
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                           <!-- <a href="/about/">About Me</a> -->
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                           <!-- <a href="/archives/">Archives</a> -->
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                           <!-- <a href="/tags/">Tags</a> -->
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://github.com/Chaway/chaway.github.com/tree/master/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('post-bg-2015.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Computer Science" title="Computer Science">Computer Science</a>
+                        
+                          <a class="tag" href="/tags/#OS" title="OS">OS</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                          <a class="tag" href="/tags/#Mac OS" title="Mac OS">Mac OS</a>
+                        
+                    </div>
+                    <h1>Useful Commands</h1>
+                    <h2 class="subheading">一些用过的命令，不定期更新</h2>
+                    <span class="meta">
+                        Posted by Chaway on
+                        2017-03-19
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <ul>
+<li><p>launch ftp server;stop ftp server(mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo <span class="_">-s</span> launchctl load -w /System/Library/LaunchDaemons/ftp.plist</div><div class="line">sudo <span class="_">-s</span> launchctl unload -w /System/Library/LaunchDaemons/ftp.plist</div></pre></td></tr></table></figure></p></li>
+<li><p>show hiden files (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">true</span> ; killall Finder</div><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">false</span> ; killall Finder</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li>show posix path on finder title bar (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool ture;killall Finder</div><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool <span class="literal">false</span>;killall Finder</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li><p>check active Internet connection,lsof actually lists all file opened <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] lsof -nP -i [:port]</div></pre></td></tr></table></figure></p></li>
+<li><p>statistics of connection，netstat on mac can’t show pid and process name <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">netstat -na [-<span class="selector-tag">p</span> TCP]</div></pre></td></tr></table></figure></p></li>
+<li><p>print status of port <figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">nmap</span> <span class="built_in">IP</span> <span class="keyword">address</span></div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li><p>nmcli manage wifi connection (Ubuntu) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] nmcli d disconnect wlan0</div><div class="line">nmcli d wifi list</div></pre></td></tr></table></figure></p></li>
+<li><p>connect a new wifi <figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line">nmcli d wifi <span class="built_in">connect</span> Milky5g password sdfsfaffads</div></pre></td></tr></table></figure></p></li>
+<li><p>show wifi in list <figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">nmcli c show</span></div></pre></td></tr></table></figure></p></li>
+<li><p>connect a wifi in the list <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">nmcli c up Milky5g</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li>unlock file (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">chflags  nouchg filename</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h5 id="firewall-configuration-about-linux">Firewall configuration about Linux:</h5>
+<ul>
+<li><p>check all rules <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -L --line-numbers</div></pre></td></tr></table></figure></p></li>
+<li><p>delete some rules.(note INPUT is only one chain in the table) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -D INPUT 10</div></pre></td></tr></table></figure></p></li>
+</ul>
+<h5 id="add-rules">Add rules:</h5>
+<ul>
+<li><p>mac address <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp -m mac --mac-source aa:bb:cc:dd:ee:ff --dport ssh -j ACCEPT</div></pre></td></tr></table></figure></p></li>
+<li><p>ip address <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp <span class="_">-s</span> 192.168.3.0/24 --dport ssh -j ACCEPT</div></pre></td></tr></table></figure></p></li>
+<li><p>save &amp;&amp; reload current rules <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo netfilter-persistent save</div><div class="line">sudo netfilter-persistent reload</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<h5 id="arping-发送特定的-arp-和-icmp-报文linux">arping 发送特定的 arp 和 icmp 报文(Linux):</h5>
+<ul>
+<li><p>如果已知目标的 ip 地址,想要获取对应的 mac 地址,可以利用 arp 协议来发送报文请求,目标 ip 收到报文后会将目标自己的 mac 地址封装在数据包中发送回去。</p></li>
+<li><p>自带 arping 命令,支持广播报文,可自定义 src.ip,从运行结果来看,先立刻向 ff:ff:ff:ff:ff:ff 广播 arp 报文,-b 的作用是进行持续广播，否则收到回复会转成单播模式。 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">arping target.ip <span class="_">-s</span> src.ip [-b] -I eth0</div></pre></td></tr></table></figure></p></li>
+<li><p>自行的编译工具(来自 github),支持向特定 mac 地址发送 arp 报文,源 src 地址也可以自定义,也可以 ping mac 地址, <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping target<span class="selector-class">.ip</span> -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> [-t dis.mac] -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
+<li>上面向 dis.mac 发送 arp 报文,target.mac 不一定等于 dst.mac,dis.mac 缺省值为 ff:ff:ff:ff:ff:ff (mac 广播地址)</li>
+<li>arp 请求报文主要内容：src1.mac src1.ip target.ip target.mac(未知，默认发送00:00:00:00:00:00) dst.mac</li>
+<li><p>arp 回复报文主要内容：src2.mac src2.ip target.ip target.mac src1.mac</p></li>
+<li><p>程序提供了[-P]选项来模拟发送回复报文，但貌似没有修改报文中的 target.mac 的选项，</p></li>
+<li><p>已知目标 mac 地址，想要获取对应的 ip 地址，可以利用 icmp 协议(ping 就是采用 icmp)来探测目标 ip <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping target<span class="selector-class">.mac</span> -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> [-T target.ip] -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
+<li><p>报文内容 src.mac src.ip target.ip(未知，默认发255.255.255.255，广播) target.mac 若target收到该 icmp 报文会用自身的 ip 回复一个 icmp 报文,就可以捕获它的 ip 地址</p></li>
+<li><p>广播 ping，注意 ping 采用 icmp 协议 <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping ff:ff:ff:ff:ff:ff -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li><p>内核参数查看 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sysctl <span class="_">-a</span>|grep *</div></pre></td></tr></table></figure></p></li>
+<li><p>内核参数修改例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo sysctl -w net.ipv4.conf.all.arp_ignore=2</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li><p>路由规则查看 /etc/iproute2/rt_tables <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule show</div></pre></td></tr></table></figure></p></li>
+<li><p>添加路由rules例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule add from ip table <span class="variable">$table_name</span></div></pre></td></tr></table></figure></p></li>
+<li><p>路由表查看 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip route show table <span class="variable">$table_name</span> (<span class="built_in">local</span>/main/default)</div></pre></td></tr></table></figure></p></li>
+<li><p>添加路由到指定的路由表例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo ip route add default via 192.168.3.1 src 192.168.3.34 dev eth0 table <span class="variable">$table_name</span></div><div class="line">sudo ip route add 192.168.3.0/24 dev eth0 src 192.168.3.34 table <span class="variable">$table_name</span></div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li>临时更改grub引导下次启动的entry <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo grub-reboot <span class="variable">$number</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>关于git的一些常用操作 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git status</div><div class="line">git reset</div><div class="line">git rm README</div><div class="line">git rm <span class="_">-f</span> README</div><div class="line">git <span class="built_in">log</span></div><div class="line">git <span class="built_in">log</span> 43f2d5c</div><div class="line">git <span class="built_in">log</span> --name-status</div><div class="line">git checkout 380e228d50822851a9e66129ff02df94228d2406 README</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h5 id="shell-命令行自定义光标移动快捷键">Shell 命令行自定义光标移动快捷键</h5>
+<ul>
+<li><p>在 <code>Bash shell</code> 中可以在用户目录下添加 <code>.inputrc</code> 文件覆盖原来的快捷键，用 <code>bind -p</code> 可以查看当前的快捷键绑定情况。 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#.inputrc 示例</span></div><div class="line"><span class="string">"\el"</span>: forward-word  </div><div class="line"><span class="comment">#这里 \e 指的是 "escape" ，也就是键盘上的 esc 键， 等价于 alt 键，所以 "alt + l" = "esc + l"</span></div><div class="line"><span class="string">"\eh"</span>: backward-word</div><div class="line"><span class="string">"\C-h"</span>: backward-char</div><div class="line"><span class="comment"># \C 表示 ctrl 键</span></div><div class="line"><span class="string">"\C-l"</span>: forward-char</div><div class="line"><span class="string">"\C-o"</span>: <span class="built_in">kill</span>-line</div><div class="line"><span class="string">"\C-j"</span>: next-history</div><div class="line"><span class="string">"\C-k"</span>: previous-history</div><div class="line"><span class="string">"\C-p"</span>: clear-screen</div><div class="line"><span class="string">"\C-b"</span>: backward-delete-char</div><div class="line"><span class="string">"\C-f"</span>: delete-char</div><div class="line"><span class="string">"\eb"</span>:  unix-word-rubout</div><div class="line"><span class="string">"\ef"</span>: <span class="built_in">kill</span>-word</div></pre></td></tr></table></figure></p></li>
+<li><p>在 <code>zsh</code> 中可以直接用 <code>bindkey</code> 查看快捷键的绑定，并用 <code>bindkey</code> 覆盖默认设置 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#bindkey 示例，可将这些语句加在 .zshrc 中，或者 .zsh_aliases 中</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^H"</span> backward-char   <span class="comment">#ctrl + h</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^L"</span> forward-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eh"</span> backward-word  <span class="comment">#在 Mac 下用 iTerm 可以自定义 option 键 </span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\el"</span> forward-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^F"</span> delete-char-or-list</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^B"</span> backward-delete-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eb"</span> backward-kill-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\ef"</span> <span class="built_in">kill</span>-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^O"</span> <span class="built_in">kill</span>-line</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^U"</span> backward-kill-line</div></pre></td></tr></table></figure></p></li>
+</ul>
+<hr>
+<ul>
+<li>在 Ubuntu 中保持特定软件包版本不更新 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo dpkg --get-selections * &gt; selections.txt</div><div class="line"><span class="comment">#将当前所有软件包版本信息重定向到一个 txt 文件中，将不需要更新的软件包的状态由 install 改成 hold</span></div><div class="line">sudo dpkg --get-selections &lt; selection.txt</div><div class="line"><span class="comment">#将修改后的文件送给包管理器更新</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>屏蔽服务程序开机启动 <figure class="highlight scss"><table><tr><td class="code"><pre><div class="line">sudo systemctl <span class="attribute">mask</span> plymouth-quit-wait<span class="selector-class">.service</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>解除屏蔽 <figure class="highlight cos"><table><tr><td class="code"><pre><div class="line">sudo systemctl unmask plymouth-<span class="keyword">quit</span>-wait.service</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>列出开始时间 <figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">systemd-analyze blame</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>grub 的配置文件 <figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="regexp">/etc/</span><span class="keyword">default</span><span class="regexp">/grub</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>查看对外 ip <figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">curl</span> <span class="built_in">ip</span>.gs</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<ul>
+<li>http 上传 <figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">curl -i -F file=<span class="meta">@filename</span> <span class="string">ip:</span>port</div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h5 id="ubuntu-下键盘重映射在-tty-中也有效">Ubuntu 下键盘重映射，在 tty 中也有效</h5>
+<ul>
+<li>交换 <code>esc</code> 和 <code>caps lock</code>: 在 <code>/etc/default/keyboard</code> 中加入 <figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="attr">XKBOPTIONS</span>=<span class="string">"caps:swapescape"</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+
+
+                <hr>
+
+                
+
+                <ul class="pager">
+                    
+                        <li class="previous">
+                            <a href="/2017/03/21/BayesianNet/" data-toggle="tooltip" data-placement="top" title="Bayesian Network">&larr; Previous Post</a>
+                        </li>
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/18/hello-world/" data-toggle="tooltip" data-placement="top" title="Hello world">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Computer Science" title="Computer Science">Computer Science</a>
+                        
+                          <a class="tag" href="/tags/#OS" title="OS">OS</a>
+                        
+                          <a class="tag" href="/tags/#Linux" title="Linux">Linux</a>
+                        
+                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                          <a class="tag" href="/tags/#Mac OS" title="Mac OS">Mac OS</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.jcix.top" target="_blank">Jc&#39; Blog</a></li>
+                    
+                        <li><a href="https://worldhellooo.github.io" target="_blank">Wh&#39; Blog</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+
+
+
+
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/chaway">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Chaway&#39;s Blog 2017 
+                    <br>
+                    Theme by <a href="http://huangxuan.me">Hux</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Ported by <a href="http://blog.kaijun.rocks">Kaijun</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=kaijun&repo=hexo-theme-huxblog&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("https://github.com/Chaway/chaway.github.com/tree/master/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("https://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User by Hux
+    var _gaId = 'UA-93957188-1';
+    var _gaDomain = 'chaway.github.io';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="https://github.com/Chaway/chaway.github.com/tree/master/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work --><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+</body>
+
+</html>
