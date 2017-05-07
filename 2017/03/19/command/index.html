@@ -332,8 +332,8 @@
 <hr>
 <h5 id="ssh-reverse-tunnel">ssh reverse tunnel</h5>
 <ul>
-<li><p>Build ssh tunnel <figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-qnfNT</span> <span class="selector-tag">-g</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:localhost</span><span class="selector-pseudo">:22</span> <span class="selector-tag">-p</span> 123456 <span class="selector-tag">user</span>@<span class="keyword">server_ip</span></div></pre></td></tr></table></figure></p></li>
-<li><p>Use autossh to build tunnel when client startup(reboot),just write command below in /etc/rc.local script <figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">su</span> -s /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 123456 user<span class="variable">@server_ip</span>"</span></div></pre></td></tr></table></figure></p></li>
+<li><p>Build ssh tunnel <figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-qnfNT</span> <span class="selector-tag">-g</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:localhost</span><span class="selector-pseudo">:22</span> <span class="selector-tag">-p</span> 12345 <span class="selector-tag">user</span>@<span class="keyword">server_ip</span></div></pre></td></tr></table></figure></p></li>
+<li><p>Use autossh to build tunnel when client startup(reboot),just write command below in /etc/rc.local script <figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">su</span> -s /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 12345 user<span class="variable">@server_ip</span>"</span></div></pre></td></tr></table></figure></p></li>
 </ul>
 <hr>
 
