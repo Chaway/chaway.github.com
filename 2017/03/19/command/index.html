@@ -110,14 +110,14 @@
 
                         
                         <li>
-                           <!-- <a href="/about/">About Me</a> -->
+                           <!-- <a href="/archives/">Archives</a> -->
                         </li>
                         
                     
 
                         
                         <li>
-                           <!-- <a href="/archives/">Archives</a> -->
+                           <!-- <a href="/about/">About Me</a> -->
                         </li>
                         
                     
@@ -328,6 +328,12 @@
 <h5 id="ubuntu-下键盘重映射在-tty-中也有效">Ubuntu 下键盘重映射，在 tty 中也有效</h5>
 <ul>
 <li>交换 <code>esc</code> 和 <code>caps lock</code>: 在 <code>/etc/default/keyboard</code> 中加入 <figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="attr">XKBOPTIONS</span>=<span class="string">"caps:swapescape"</span></div></pre></td></tr></table></figure></li>
+</ul>
+<hr>
+<h5 id="ssh-reverse-tunnel">ssh reverse tunnel</h5>
+<ul>
+<li><p>Build ssh tunnel <figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-qnfNT</span> <span class="selector-tag">-g</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:localhost</span><span class="selector-pseudo">:22</span> <span class="selector-tag">-p</span> 123456 <span class="selector-tag">user</span>@<span class="keyword">server_ip</span></div></pre></td></tr></table></figure></p></li>
+<li><p>Use autossh to build tunnel when client startup(reboot),just write command below in /etc/rc.local script <figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">su</span> -s /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 123456 user<span class="variable">@server_ip</span>"</span></div></pre></td></tr></table></figure></p></li>
 </ul>
 <hr>
 
