@@ -220,122 +220,188 @@
                 post-container">
 
                 <ul>
-<li><p>launch ftp server;stop ftp server(mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo <span class="_">-s</span> launchctl load -w /System/Library/LaunchDaemons/ftp.plist</div><div class="line">sudo <span class="_">-s</span> launchctl unload -w /System/Library/LaunchDaemons/ftp.plist</div></pre></td></tr></table></figure></p></li>
-<li><p>show hiden files (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">true</span> ; killall Finder</div><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">false</span> ; killall Finder</div></pre></td></tr></table></figure></p></li>
+<li>launch ftp server;stop ftp server(mac)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo <span class="_">-s</span> launchctl load -w /System/Library/LaunchDaemons/ftp.plist</div><div class="line">sudo <span class="_">-s</span> launchctl unload -w /System/Library/LaunchDaemons/ftp.plist</div></pre></td></tr></table></figure>
+<ul>
+<li>show hiden files (mac)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">true</span> ; killall Finder</div><div class="line">defaults write com.apple.finder AppleShowAllFiles -boolean <span class="literal">false</span> ; killall Finder</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>show posix path on finder title bar (mac)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool ture;killall Finder</div><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool <span class="literal">false</span>;killall Finder</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>check active Internet connection,lsof actually lists all file opened </li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] lsof -nP -i [:port]</div></pre></td></tr></table></figure>
+<ul>
+<li>statistics of connection，netstat on mac can’t show pid and process name</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">netstat -na [-p TCP]</div></pre></td></tr></table></figure>
+<hr>
+<h5 id="Nmap"><a href="#Nmap" class="headerlink" title="Nmap"></a>Nmap</h5><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#print status of port</span></div><div class="line">nmap 192.168.1.1</div><div class="line"><span class="comment">#scan specific ports</span></div><div class="line">namp 192.168.1.1 -p 1-1000</div><div class="line"><span class="comment">#scan hosts in LAN</span></div><div class="line">nmap <span class="_">-s</span>P 192.168.1.0/24</div></pre></td></tr></table></figure>
+<hr>
+<ul>
+<li>nmcli manage wifi connection (Ubuntu)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] nmcli d disconnect wlan0</div><div class="line">nmcli d wifi list</div></pre></td></tr></table></figure>
+<ul>
+<li><p>connect a new wifi</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">nmcli d wifi connect Milky5g password sdfsfaffads</div></pre></td></tr></table></figure>
+</li>
+<li><p>show wifi in list</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">nmcli c show</div></pre></td></tr></table></figure>
+</li>
+<li><p>connect a wifi in the list</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">nmcli c up Milky5g</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>show posix path on finder title bar (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool ture;killall Finder</div><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool <span class="literal">false</span>;killall Finder</div></pre></td></tr></table></figure></li>
+<li>unlock file (mac)<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">chflags nouchg filename</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
-<ul>
-<li><p>check active Internet connection,lsof actually lists all file opened <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] lsof -nP -i [:port]</div></pre></td></tr></table></figure></p></li>
-<li><p>statistics of connection，netstat on mac can’t show pid and process name <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">netstat -na [-<span class="selector-tag">p</span> TCP]</div></pre></td></tr></table></figure></p></li>
-<li><p>print status of port <figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">nmap</span> <span class="built_in">IP</span> <span class="keyword">address</span></div></pre></td></tr></table></figure></p></li>
+<h5 id="Firewall-configuration-about-Linux"><a href="#Firewall-configuration-about-Linux" class="headerlink" title="Firewall configuration about Linux:"></a>Firewall configuration about Linux:</h5><ul>
+<li><p>check all rules</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -L --line-numbers</div></pre></td></tr></table></figure>
+</li>
+<li><p>delete some rules.(note INPUT is only one chain in the table)</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -D INPUT 10</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h5 id="Add-rules"><a href="#Add-rules" class="headerlink" title="Add rules:"></a>Add rules:</h5><ul>
+<li><p>mac address</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp -m mac --mac-source aa:bb:cc:dd:ee:ff --dport ssh -j ACCEPT</div></pre></td></tr></table></figure>
+</li>
+<li><p>ip address</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp <span class="_">-s</span> 192.168.3.0/24 --dport ssh -j ACCEPT</div></pre></td></tr></table></figure>
+</li>
+<li><p>save &amp;&amp; reload current rules</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo netfilter-persistent save</div><div class="line">sudo netfilter-persistent reload</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
-<ul>
-<li><p>nmcli manage wifi connection (Ubuntu) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] nmcli d disconnect wlan0</div><div class="line">nmcli d wifi list</div></pre></td></tr></table></figure></p></li>
-<li><p>connect a new wifi <figure class="highlight arduino"><table><tr><td class="code"><pre><div class="line">nmcli d wifi <span class="built_in">connect</span> Milky5g password sdfsfaffads</div></pre></td></tr></table></figure></p></li>
-<li><p>show wifi in list <figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">nmcli c show</span></div></pre></td></tr></table></figure></p></li>
-<li><p>connect a wifi in the list <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">nmcli c up Milky5g</div></pre></td></tr></table></figure></p></li>
-</ul>
-<hr>
-<ul>
-<li>unlock file (mac) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">chflags  nouchg filename</div></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<h5 id="firewall-configuration-about-linux">Firewall configuration about Linux:</h5>
-<ul>
-<li><p>check all rules <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -L --line-numbers</div></pre></td></tr></table></figure></p></li>
-<li><p>delete some rules.(note INPUT is only one chain in the table) <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -D INPUT 10</div></pre></td></tr></table></figure></p></li>
-</ul>
-<h5 id="add-rules">Add rules:</h5>
-<ul>
-<li><p>mac address <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp -m mac --mac-source aa:bb:cc:dd:ee:ff --dport ssh -j ACCEPT</div></pre></td></tr></table></figure></p></li>
-<li><p>ip address <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo iptables -A INPUT -p tcp <span class="_">-s</span> 192.168.3.0/24 --dport ssh -j ACCEPT</div></pre></td></tr></table></figure></p></li>
-<li><p>save &amp;&amp; reload current rules <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo netfilter-persistent save</div><div class="line">sudo netfilter-persistent reload</div></pre></td></tr></table></figure></p></li>
-</ul>
-<hr>
-<h5 id="arping-发送特定的-arp-和-icmp-报文linux">arping 发送特定的 arp 和 icmp 报文(Linux):</h5>
-<ul>
-<li><p>如果已知目标的 ip 地址,想要获取对应的 mac 地址,可以利用 arp 协议来发送报文请求,目标 ip 收到报文后会将目标自己的 mac 地址封装在数据包中发送回去。</p></li>
-<li><p>自带 arping 命令,支持广播报文,可自定义 src.ip,从运行结果来看,先立刻向 ff:ff:ff:ff:ff:ff 广播 arp 报文,-b 的作用是进行持续广播，否则收到回复会转成单播模式。 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">arping target.ip <span class="_">-s</span> src.ip [-b] -I eth0</div></pre></td></tr></table></figure></p></li>
-<li><p>自行的编译工具(来自 github),支持向特定 mac 地址发送 arp 报文,源 src 地址也可以自定义,也可以 ping mac 地址, <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping target<span class="selector-class">.ip</span> -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> [-t dis.mac] -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
-<li>上面向 dis.mac 发送 arp 报文,target.mac 不一定等于 dst.mac,dis.mac 缺省值为 ff:ff:ff:ff:ff:ff (mac 广播地址)</li>
+<h5 id="arping-发送特定的-arp-和-icmp-报文-Linux"><a href="#arping-发送特定的-arp-和-icmp-报文-Linux" class="headerlink" title="arping 发送特定的 arp 和 icmp 报文(Linux):"></a>arping 发送特定的 arp 和 icmp 报文(Linux):</h5><ul>
+<li><p>如果已知目标的 ip 地址,想要获取对应的 mac 地址,可以利用 arp 协议来发送报文请求,目标 ip 收到报文后会将目标自己的 mac 地址封装在数据包中发送回去。</p>
+</li>
+<li><p>自带 arping 命令,支持广播报文,可自定义 src.ip,从运行结果来看,先立刻向 ff:ff:ff:ff:ff:ff 广播 arp 报文,-b 的作用是进行持续广播，否则收到回复会转成单播模式。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">arping target.ip <span class="_">-s</span> src.ip [-b] -I eth0</div></pre></td></tr></table></figure>
+</li>
+<li><p>自行的编译工具(来自 github),支持向特定 mac 地址发送 arp 报文,源 src 地址也可以自定义,也可以 ping mac 地址,</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">./arping target.ip -S src.ip <span class="_">-s</span> src.mac [-t dis.mac] -i eth0</div></pre></td></tr></table></figure>
+</li>
+<li><p>上面向 dis.mac 发送 arp 报文,target.mac 不一定等于 dst.mac,dis.mac 缺省值为 ff:ff:ff:ff:ff:ff (mac 广播地址)</p>
+</li>
 <li>arp 请求报文主要内容：src1.mac src1.ip target.ip target.mac(未知，默认发送00:00:00:00:00:00) dst.mac</li>
-<li><p>arp 回复报文主要内容：src2.mac src2.ip target.ip target.mac src1.mac</p></li>
-<li><p>程序提供了[-P]选项来模拟发送回复报文，但貌似没有修改报文中的 target.mac 的选项，</p></li>
-<li><p>已知目标 mac 地址，想要获取对应的 ip 地址，可以利用 icmp 协议(ping 就是采用 icmp)来探测目标 ip <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping target<span class="selector-class">.mac</span> -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> [-T target.ip] -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
-<li><p>报文内容 src.mac src.ip target.ip(未知，默认发255.255.255.255，广播) target.mac 若target收到该 icmp 报文会用自身的 ip 回复一个 icmp 报文,就可以捕获它的 ip 地址</p></li>
-<li><p>广播 ping，注意 ping 采用 icmp 协议 <figure class="highlight stylus"><table><tr><td class="code"><pre><div class="line">./arping ff:ff:ff:ff:ff:ff -S src<span class="selector-class">.ip</span> -s src<span class="selector-class">.mac</span> -<span class="selector-tag">i</span> eth0</div></pre></td></tr></table></figure></p></li>
+<li><p>arp 回复报文主要内容：src2.mac src2.ip target.ip target.mac src1.mac</p>
+</li>
+<li><p>程序提供了[-P]选项来模拟发送回复报文，但貌似没有修改报文中的 target.mac 的选项，</p>
+</li>
+</ul>
+<ul>
+<li><p>已知目标 mac 地址，想要获取对应的 ip 地址，可以利用 icmp 协议(ping 就是采用 icmp)来探测目标 ip</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">./arping target.mac -S src.ip <span class="_">-s</span> src.mac [-T target.ip] -i eth0</div></pre></td></tr></table></figure>
+</li>
+<li><p>报文内容 src.mac src.ip target.ip(未知，默认发255.255.255.255，广播) target.mac<br>若target收到该 icmp 报文会用自身的 ip 回复一个 icmp 报文,就可以捕获它的 ip 地址</p>
+</li>
+<li><p>广播 ping，注意 ping 采用 icmp 协议</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">./arping ff:ff:ff:ff:ff:ff -S src.ip <span class="_">-s</span> src.mac -i eth0</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li><p>内核参数查看 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sysctl <span class="_">-a</span>|grep *</div></pre></td></tr></table></figure></p></li>
-<li><p>内核参数修改例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo sysctl -w net.ipv4.conf.all.arp_ignore=2</div></pre></td></tr></table></figure></p></li>
+<li><p>内核参数查看</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sysctl <span class="_">-a</span>|grep *</div></pre></td></tr></table></figure>
+</li>
+<li><p>内核参数修改例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo sysctl -w net.ipv4.conf.all.arp_ignore=2</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li><p>路由规则查看 /etc/iproute2/rt_tables <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule show</div></pre></td></tr></table></figure></p></li>
-<li><p>添加路由rules例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule add from ip table <span class="variable">$table_name</span></div></pre></td></tr></table></figure></p></li>
-<li><p>路由表查看 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip route show table <span class="variable">$table_name</span> (<span class="built_in">local</span>/main/default)</div></pre></td></tr></table></figure></p></li>
-<li><p>添加路由到指定的路由表例子 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo ip route add default via 192.168.3.1 src 192.168.3.34 dev eth0 table <span class="variable">$table_name</span></div><div class="line">sudo ip route add 192.168.3.0/24 dev eth0 src 192.168.3.34 table <span class="variable">$table_name</span></div></pre></td></tr></table></figure></p></li>
+<li><p>路由规则查看 /etc/iproute2/rt_tables</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule show</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加路由rules例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip rule add from ip table <span class="variable">$table_name</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>路由表查看</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ip route show table <span class="variable">$table_name</span> (<span class="built_in">local</span>/main/default)</div></pre></td></tr></table></figure>
+</li>
+<li><p>添加路由到指定的路由表例子</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo ip route add default via 192.168.3.1 src 192.168.3.34 dev eth0 table <span class="variable">$table_name</span></div><div class="line">sudo ip route add 192.168.3.0/24 dev eth0 src 192.168.3.34 table <span class="variable">$table_name</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>临时更改grub引导下次启动的entry <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo grub-reboot <span class="variable">$number</span></div></pre></td></tr></table></figure></li>
+<li>临时更改grub引导下次启动的entry<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo grub-reboot <span class="variable">$number</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>关于git的一些常用操作 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git status</div><div class="line">git reset</div><div class="line">git rm README</div><div class="line">git rm <span class="_">-f</span> README</div><div class="line">git <span class="built_in">log</span></div><div class="line">git <span class="built_in">log</span> 43f2d5c</div><div class="line">git <span class="built_in">log</span> --name-status</div><div class="line">git checkout 380e228d50822851a9e66129ff02df94228d2406 README</div></pre></td></tr></table></figure></li>
+<li>关于git的一些常用操作<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">git status</div><div class="line">git reset</div><div class="line">git rm README</div><div class="line">git rm <span class="_">-f</span> README</div><div class="line">git <span class="built_in">log</span></div><div class="line">git <span class="built_in">log</span> 43f2d5c</div><div class="line">git <span class="built_in">log</span> --name-status</div><div class="line">git checkout 380e228d50822851a9e66129ff02df94228d2406 README</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
-<h5 id="shell-命令行自定义光标移动快捷键">Shell 命令行自定义光标移动快捷键</h5>
-<ul>
-<li><p>在 <code>Bash shell</code> 中可以在用户目录下添加 <code>.inputrc</code> 文件覆盖原来的快捷键，用 <code>bind -p</code> 可以查看当前的快捷键绑定情况。 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#.inputrc 示例</span></div><div class="line"><span class="string">"\el"</span>: forward-word  </div><div class="line"><span class="comment">#这里 \e 指的是 "escape" ，也就是键盘上的 esc 键， 等价于 alt 键，所以 "alt + l" = "esc + l"</span></div><div class="line"><span class="string">"\eh"</span>: backward-word</div><div class="line"><span class="string">"\C-h"</span>: backward-char</div><div class="line"><span class="comment"># \C 表示 ctrl 键</span></div><div class="line"><span class="string">"\C-l"</span>: forward-char</div><div class="line"><span class="string">"\C-o"</span>: <span class="built_in">kill</span>-line</div><div class="line"><span class="string">"\C-j"</span>: next-history</div><div class="line"><span class="string">"\C-k"</span>: previous-history</div><div class="line"><span class="string">"\C-p"</span>: clear-screen</div><div class="line"><span class="string">"\C-b"</span>: backward-delete-char</div><div class="line"><span class="string">"\C-f"</span>: delete-char</div><div class="line"><span class="string">"\eb"</span>:  unix-word-rubout</div><div class="line"><span class="string">"\ef"</span>: <span class="built_in">kill</span>-word</div></pre></td></tr></table></figure></p></li>
-<li><p>在 <code>zsh</code> 中可以直接用 <code>bindkey</code> 查看快捷键的绑定，并用 <code>bindkey</code> 覆盖默认设置 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#bindkey 示例，可将这些语句加在 .zshrc 中，或者 .zsh_aliases 中</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^H"</span> backward-char   <span class="comment">#ctrl + h</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^L"</span> forward-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eh"</span> backward-word  <span class="comment">#在 Mac 下用 iTerm 可以自定义 option 键 </span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\el"</span> forward-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^F"</span> delete-char-or-list</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^B"</span> backward-delete-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eb"</span> backward-kill-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\ef"</span> <span class="built_in">kill</span>-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^O"</span> <span class="built_in">kill</span>-line</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^U"</span> backward-kill-line</div></pre></td></tr></table></figure></p></li>
-</ul>
-<hr>
-<ul>
-<li>在 Ubuntu 中保持特定软件包版本不更新 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo dpkg --get-selections * &gt; selections.txt</div><div class="line"><span class="comment">#将当前所有软件包版本信息重定向到一个 txt 文件中，将不需要更新的软件包的状态由 install 改成 hold</span></div><div class="line">sudo dpkg --get-selections &lt; selection.txt</div><div class="line"><span class="comment">#将修改后的文件送给包管理器更新</span></div></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<ul>
-<li>屏蔽服务程序开机启动 <figure class="highlight scss"><table><tr><td class="code"><pre><div class="line">sudo systemctl <span class="attribute">mask</span> plymouth-quit-wait<span class="selector-class">.service</span></div></pre></td></tr></table></figure></li>
+<h5 id="Shell-命令行自定义光标移动快捷键"><a href="#Shell-命令行自定义光标移动快捷键" class="headerlink" title="Shell 命令行自定义光标移动快捷键"></a>Shell 命令行自定义光标移动快捷键</h5><ul>
+<li><p>在 <code>Bash shell</code> 中可以在用户目录下添加 <code>.inputrc</code> 文件覆盖原来的快捷键，用 <code>bind -p</code> 可以查看当前的快捷键绑定情况。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#.inputrc 示例</span></div><div class="line"><span class="string">"\el"</span>: forward-word  </div><div class="line"><span class="comment">#这里 \e 指的是 "escape" ，也就是键盘上的 esc 键， 等价于 alt 键，所以 "alt + l" = "esc + l"</span></div><div class="line"><span class="string">"\eh"</span>: backward-word</div><div class="line"><span class="string">"\C-h"</span>: backward-char</div><div class="line"><span class="comment"># \C 表示 ctrl 键</span></div><div class="line"><span class="string">"\C-l"</span>: forward-char</div><div class="line"><span class="string">"\C-o"</span>: <span class="built_in">kill</span>-line</div><div class="line"><span class="string">"\C-j"</span>: next-history</div><div class="line"><span class="string">"\C-k"</span>: previous-history</div><div class="line"><span class="string">"\C-p"</span>: clear-screen</div><div class="line"><span class="string">"\C-b"</span>: backward-delete-char</div><div class="line"><span class="string">"\C-f"</span>: delete-char</div><div class="line"><span class="string">"\eb"</span>:  unix-word-rubout</div><div class="line"><span class="string">"\ef"</span>: <span class="built_in">kill</span>-word</div></pre></td></tr></table></figure>
+</li>
+<li><p>在 <code>zsh</code> 中可以直接用 <code>bindkey</code> 查看快捷键的绑定，并用 <code>bindkey</code>  覆盖默认设置</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#bindkey 示例，可将这些语句加在 .zshrc 中，或者 .zsh_aliases 中</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^H"</span> backward-char   <span class="comment">#ctrl + h</span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^L"</span> forward-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eh"</span> backward-word  <span class="comment">#在 Mac 下用 iTerm 可以自定义 option 键 </span></div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\el"</span> forward-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^F"</span> delete-char-or-list</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^B"</span> backward-delete-char</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\eb"</span> backward-kill-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"\ef"</span> <span class="built_in">kill</span>-word</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^O"</span> <span class="built_in">kill</span>-line</div><div class="line"><span class="built_in">bindkey</span> <span class="string">"^U"</span> backward-kill-line</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>解除屏蔽 <figure class="highlight cos"><table><tr><td class="code"><pre><div class="line">sudo systemctl unmask plymouth-<span class="keyword">quit</span>-wait.service</div></pre></td></tr></table></figure></li>
+<li>在 Ubuntu 中保持特定软件包版本不更新<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo dpkg --get-selections * &gt; selections.txt</div><div class="line"><span class="comment">#将当前所有软件包版本信息重定向到一个 txt 文件中，将不需要更新的软件包的状态由 install 改成 hold</span></div><div class="line">sudo dpkg --get-selections &lt; selection.txt</div><div class="line"><span class="comment">#将修改后的文件送给包管理器更新</span></div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>列出开始时间 <figure class="highlight ebnf"><table><tr><td class="code"><pre><div class="line"><span class="attribute">systemd-analyze blame</span></div></pre></td></tr></table></figure></li>
+<li>屏蔽服务程序开机启动<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo systemctl mask plymouth-quit-wait.service</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>grub 的配置文件 <figure class="highlight gradle"><table><tr><td class="code"><pre><div class="line"><span class="regexp">/etc/</span><span class="keyword">default</span><span class="regexp">/grub</span></div></pre></td></tr></table></figure></li>
+<li>解除屏蔽<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">sudo systemctl unmask plymouth-quit-wait.service</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>查看对外 ip <figure class="highlight armasm"><table><tr><td class="code"><pre><div class="line"><span class="symbol">curl</span> <span class="built_in">ip</span>.gs</div></pre></td></tr></table></figure></li>
+<li>列出开始时间<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">systemd-analyze blame</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
 <ul>
-<li>http 上传 <figure class="highlight groovy"><table><tr><td class="code"><pre><div class="line">curl -i -F file=<span class="meta">@filename</span> <span class="string">ip:</span>port</div></pre></td></tr></table></figure></li>
+<li>grub 的配置文件<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">/etc/default/grub</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
-<h5 id="ubuntu-下键盘重映射在-tty-中也有效">Ubuntu 下键盘重映射，在 tty 中也有效</h5>
 <ul>
-<li>交换 <code>esc</code> 和 <code>caps lock</code>: 在 <code>/etc/default/keyboard</code> 中加入 <figure class="highlight ini"><table><tr><td class="code"><pre><div class="line"><span class="attr">XKBOPTIONS</span>=<span class="string">"caps:swapescape"</span></div></pre></td></tr></table></figure></li>
+<li>查看对外 ip<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">curl ip.gs</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
-<h5 id="ssh-reverse-tunnel">ssh reverse tunnel</h5>
 <ul>
-<li><p>Build ssh tunnel <figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-tag">ssh</span> <span class="selector-tag">-qnfNT</span> <span class="selector-tag">-g</span> <span class="selector-tag">-R</span> 6666<span class="selector-pseudo">:localhost</span><span class="selector-pseudo">:22</span> <span class="selector-tag">-p</span> 12345 <span class="selector-tag">user</span>@<span class="keyword">server_ip</span></div></pre></td></tr></table></figure></p></li>
-<li><p>Use autossh to build tunnel when client startup(reboot),just write command below in /etc/rc.local script <figure class="highlight nginx"><table><tr><td class="code"><pre><div class="line"><span class="attribute">su</span> -s /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 12345 user<span class="variable">@server_ip</span>"</span></div></pre></td></tr></table></figure></p></li>
+<li>http 上传<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">curl -i -F file=@filename ip:port</div></pre></td></tr></table></figure>
+</li>
 </ul>
 <hr>
+<h5 id="Ubuntu-下键盘重映射，在-tty-中也有效"><a href="#Ubuntu-下键盘重映射，在-tty-中也有效" class="headerlink" title="Ubuntu 下键盘重映射，在 tty 中也有效"></a>Ubuntu 下键盘重映射，在 tty 中也有效</h5><ul>
+<li>交换 <code>esc</code> 和 <code>caps lock</code>: 在 <code>/etc/default/keyboard</code> 中加入<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">XKBOPTIONS=<span class="string">"caps:swapescape"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h5 id="ssh-reverse-tunnel"><a href="#ssh-reverse-tunnel" class="headerlink" title="ssh reverse tunnel"></a>ssh reverse tunnel</h5><ul>
+<li>Build ssh tunnel<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ssh -qnfNT -g -R 6666:localhost:22 -p 12345 user@server_ip</div><div class="line">```bash</div><div class="line">- Use autossh to build tunnel when client startup(reboot),just write <span class="built_in">command</span> below <span class="keyword">in</span> /etc/rc.local script</div><div class="line">```bash</div><div class="line">su <span class="_">-s</span> /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 12345 user@server_ip"</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<hr>
+<h5 id="Anaconda"><a href="#Anaconda" class="headerlink" title="Anaconda"></a>Anaconda</h5><figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#list packages</span></div><div class="line">conda list</div><div class="line"><span class="comment">#update all packages </span></div><div class="line">conda update conda</div><div class="line"><span class="comment">#create independent python env called "test"</span></div><div class="line">conda create -i <span class="built_in">test</span> [python=3.6]</div><div class="line"><span class="comment">#list current envs</span></div><div class="line">conda info --env</div><div class="line"><span class="comment">#activate env test</span></div><div class="line"><span class="built_in">source</span> activate <span class="built_in">test</span></div><div class="line"><span class="comment">#deactivate</span></div><div class="line"><span class="built_in">source</span> deactivate</div></pre></td></tr></table></figure>
 
 
                 <hr>
