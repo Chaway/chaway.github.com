@@ -13,11 +13,11 @@
 
     <title>
         
-          Archives - Chaway的博客 | Chaway&#39;s Blog
+          Learning to Synthesize a 4D RGBD Light Field from a Single Image - Chaway的博客 | Chaway&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="https://github.com/Chaway/chaway.github.com/tree/master/archives/">
+    <link rel="canonical" href="https://github.com/Chaway/chaway.github.com/tree/master/2017/09/11/LSRGBDLF/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -167,139 +167,228 @@
 
 
     <!-- Main Content -->
-    <!-- Page Header -->
-<header class="intro-header" style="background-image: url('/img/archives-bg.jpg')">
+    
+<!-- Image to hack wechat -->
+<!-- <img src="https://github.com/Chaway/chaway.github.com/tree/master/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('bg.jpg')
+    }
+</style>
+<header class="intro-header" >
     <div class="container">
         <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 ">
-                <div class="site-heading">
-                    <h1>Archives</h1>
-                    <!--<hr class="small">-->
-                    <span class="subheading">My Archives.</span>
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Computer Science" title="Computer Science">Computer Science</a>
+                        
+                          <a class="tag" href="/tags/#Light Filed" title="Light Filed">Light Filed</a>
+                        
+                          <a class="tag" href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+                        
+                    </div>
+                    <h1>Learning to Synthesize a 4D RGBD Light Field from a Single Image</h1>
+                    <h2 class="subheading"></h2>
+                    <span class="meta">
+                        Posted by Chaway on
+                        2017-09-11
+                    </span>
                 </div>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            <!-- 归档列表 -->
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
 
-            
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
 
-             <!-- 归档列表 -->
+                <h4 id="learning-to-synthesize-a-4d-rgbd-light-field-from-a-single-image">Learning to Synthesize a 4D RGBD Light Field from a Single Image</h4>
+<hr>
+<p>Pratul P. Srinivasan, Tongzhou Wang, Ashwin Sreelal, <strong>Ravi Ramamoorthi</strong>, <strong>Ren Ng</strong></p>
+<p>Published in ICCV 2017</p>
+<hr>
+<h4 id="abstract">Abstract:</h4>
+<ul>
+<li>制作了一个最大的光场数据集，包含约 3300 张光场图像</li>
+<li>两个 CNN 分别用于预测场景的<strong>深度信息</strong>，以及预测 <strong><em>occluded rays and non-Lambertian effects</em></strong></li>
+<li>基于最近的视合成方法, 创新点在于可以预测每条光线的 RGBD (也就是说从既可以预测光线的颜色，也可以估计深度)，并利用光线的视差一致性提升了单个 view 的深度估计</li>
+</ul>
+<hr>
+<h4 id="introduction">Introduction：</h4>
+<ul>
+<li><p>利用非监督学习框架估计场景深度</p></li>
+<li><p>LOSS 为利用估计的场景深度和 center view 渲染得到的光场，再经过对遮挡区域和 non-Lambertain 场景增强修复后，与真实光场之间的差异</p></li>
+<li><p>框架（从单个 view 到 4D LF 分为三个子任务，详细解释见下文）：</p></li>
+</ul>
+<div class="figure">
+<img src="Screen%20Shot%202017-09-10%20at%2022.29.56.png">
+
+</div>
+<hr>
+<h4 id="related-work">Related Work</h4>
+<ul>
+<li>Light Fields</li>
+<li>View Synthesis from Light Fields</li>
+<li>View Synthesis without Geometry Estimation</li>
+<li>View Synthesis by Geometry Estimation</li>
+<li><strong><em>3D Representation Inference from a Single Image</em></strong></li>
+</ul>
+<hr>
+<h4 id="light-field-synthesis">Light Field Synthesis</h4>
+<ul>
+<li>定义从单个 view 估计 4D Light Field 的映射为 <span class="math inline">\(f\)</span></li>
+</ul>
+<div class="figure">
+<img src="Screen%20Shot%202017-09-10%20at%2022.42.01.png">
+
+</div>
+<ul>
+<li><p><span class="math inline">\(f\)</span> 分解为三个子步骤:1.利用 CNN 从 center view 估计所有 view 的深度图 2.从深度图和 center view warping 出所有 view 3. 使用另一个 CNN 计算残差来修复遮挡和 non-Lambertain 失真 <img src="Screen%20Shot%202017-09-10%20at%2022.42.06.png"> <span class="math inline">\(D,L,L_r,\hat{L}\)</span> 分别是，估计的深度图，训练光场数据，利用 center view 和深度图合成的光场，加上残差来修复遮挡和 non-Lambertain 失真后的光场</p></li>
+<li><p>损失函数 <img src="Screen%20Shot%202017-09-10%20at%2022.42.14.png"> <span class="math inline">\(\psi_c,\psi_{tv}\)</span>是两个正则项，后面会介绍</p></li>
+<li><p>损失函数中包含 <span class="math inline">\(L,L_r\)</span> 的误差项是为了防止遮挡预测网络自己学习使得深度估计网络无法学习到一个合适的深度估计函数</p></li>
+</ul>
+<hr>
+<h4 id="light-field-dataset">Light Field Dataset</h4>
+<ul>
+<li>目前为止（2017.9）最大的光场数据集（总共 3343 ：3243 用于训练，100 用于测试）</li>
+<li>利用 Lytro Illum 采集，固定焦距 30mm，光圈 f/2 ，其他参数自动</li>
+<li>利用 Lytro Power Tools Beta 解码</li>
+<li>分辨率 376x541x14x14，只采用中间 8x8 的 view</li>
+<li>数据集场景主要为 花和植物</li>
+</ul>
+<hr>
+<h4 id="synthesizing-4d-ray-depths">Synthesizing 4D Ray Depths</h4>
+<ul>
+<li><p>在纹理较少的区域，即使深度估计错误，基于深度的 warping 仍旧可以合成正确的 view</p></li>
+<li><p>遮挡边界处的深度估计往往是不正确的，因为预测正确的深度需要从遮挡处采集像素</p></li>
+<li><p>如果只考虑视合成，那么错误的深度没有很大的影响，但是，如果将视合成看成是一个从单个 2D view 的估计深度的非监督学习算法，那么就需要提升预测的深度图的准确度</p></li>
+<li><p>考虑到不同 view 之间视差一致性，在同一个 slope 上的点深度相同，所以 <img src="Screen%20Shot%202017-09-10%20at%2023.18.03.png"> 取 <span class="math inline">\(k = 1\)</span> ,得到一下正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.07.png"> 又因为错误的深度会导致更大的梯度，所以在采用一个关于梯度的正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.15.png"></p></li>
+<li><p>深度估计网络 采用 dilated convolution，batch normalization，exponentially linear unit activation，输出层使用 scaled tanh activation ([-16,16])</p></li>
+</ul>
+<hr>
+<h4 id="synthesizing-the-4d-light-field">Synthesizing the 4D Light Field</h4>
+<ul>
+<li><p>Lambertian Light Field Rendering <img src="Screen%20Shot%202017-09-11%20at%2010.07.14.png"> 输入 center view 和各个 view 的深度图，warping 得到所有 view</p></li>
+<li><p>Occlusions and Non-Lambertian Effects 输入 <span class="math inline">\(L_r, D\)</span> 利用 CNN 输出一个残差修正项 5 层 3D CNN，batch normalization， ELU activation， 输出采用 tanh activation([-1,-1])</p></li>
+</ul>
+<hr>
+<h4 id="training">Training</h4>
+<ul>
+<li>训练样本从数据集中随机剪裁出 192x192x8x8 的局部光场，再下采样为 96x96x8x8</li>
+<li>基于深度的 view 合成采用 bilinear interpolation，所以网络是全可微分的</li>
+<li>训练方法采用 first-order Adam optimization algorithm</li>
+</ul>
+<hr>
+<h4 id="results">Results</h4>
+<ul>
+<li><p>深度估计结果与 Accurate depth map estimation from a lenslet light field camera. In CVPR, 2015 做了对比在许多场景中有更好的细节</p></li>
+<li><p>视合成结果与 View synthesis by appearance flow. In ECCV, 2016 做了对比，在边缘还原上效果更好，并且在测试集上误差的分布更好</p></li>
+</ul>
+<div class="figure">
+<img src="Screen%20Shot%202017-09-11%20at%2010.30.32.png">
+
+</div>
+<ul>
+<li><p>作者尝试了用 appearance flow 生成 view 的方法，只需将深度估计网络的改成预测 flow fields 来生成各个 view，因为 appearance flow 不能生成明确的几何表示，所以不能被用于深度估计</p></li>
+<li><p>直观上来说, 将观察到的光线流入遮挡区域的正确的策略会随着不同的花的颜色和形状而动态地改变，所以难以学习。作者将问题分成了深度预测和被遮挡的光线预测，所以深度预测网络可以专注于深度估计的正确性，不需要正确的预测被遮挡的光线</p></li>
+<li><p>作者还尝试了用一个深层网络直接从 center view 预测 4D 光场，平均误差为 0.036</p></li>
+<li><p>本文方法还与与 Learning-based view synthesis for light field cameras. In ACM Transactions on Graphics, 2016 对比，<strong><em>本文方法平均误差比上面的工作更大</em></strong></p></li>
+<li><p>展示了合成的光场图像在 EPI 有比较复杂的纹理，而且具有一定的 refocus 效果</p></li>
+</ul>
+<hr>
+<h4 id="conclusion">Conclusion</h4>
+<ul>
+<li>具有不错的泛化效果，作者演示了用手机相机拍摄的一个场景生成的光场图像的深度图，EPI，以及 refocus 效果</li>
+<li>在一个玩具汽车上尝试了泛化（感觉效果一般）</li>
+</ul>
+<p>​<br>
+​<br>
+​</p>
 
 
+                <hr>
 
-            
-            <div class="one-tag-list">
-                <span class="fa fa-calendar-times-o listing-seperator" id="2017">
-                    <span class="tag-text">2017</span>
-                </span>
-                <ul>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    09-11
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/09/11/LSRGBDLF/" style="color: #0085a1">
-                        <span>
-                            Learning to Synthesize a 4D RGBD Light Field from a Single Image
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-25
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/03/25/VarElimination/" style="color: #0085a1">
-                        <span>
-                            Exact Inference
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-21
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/03/21/MarkovNet/" style="color: #0085a1">
-                        <span>
-                            Markov Network
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-21
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/03/21/BayesianNet/" style="color: #0085a1">
-                        <span>
-                            Bayesian Network
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-19
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/03/19/command/" style="color: #0085a1">
-                        <span>
-                            Useful Commands
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
-                
-                  <!-- <li class="listing-item">
-                  <time datetime="{{ post.date | date:"%Y-%m-%d" }}">{{ post.date | date:"%Y-%m-%d" }}</time>
-                  <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
-                  </li> -->
-                 <li >
-                    03-18
-                    <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-                    <a href="/2017/03/18/hello-world/" style="color: #0085a1">
-                        <span>
-                            Hello world
-                        </span>
-                    </a>
-                    <!-- <p class="post-meta">{{ post.date | date:"%Y-%m-%d" }}</p> -->
-                </li>
                 
 
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2017/03/25/VarElimination/" data-toggle="tooltip" data-placement="top" title="Exact Inference">Next Post &rarr;</a>
+                        </li>
+                    
                 </ul>
-            </div>
-            
 
+                
+
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Computer Science" title="Computer Science">Computer Science</a>
+                        
+                          <a class="tag" href="/tags/#Light Filed" title="Light Filed">Light Filed</a>
+                        
+                          <a class="tag" href="/tags/#Deep Learning" title="Deep Learning">Deep Learning</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.jcix.top" target="_blank">Jc&#39; Blog</a></li>
+                    
+                        <li><a href="https://worldhellooo.github.io" target="_blank">Wh&#39; Blog</a></li>
+                    
+                </ul>
+                
+            </div>
 
         </div>
     </div>
-</div>
+</article>
+
+
+
+
+
+
+
 
 
     <!-- Footer -->
