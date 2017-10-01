@@ -110,14 +110,14 @@
 
                         
                         <li>
-                           <!-- <a href="/archives/">Archives</a> -->
+                           <!-- <a href="/about/">About Me</a> -->
                         </li>
                         
                     
 
                         
                         <li>
-                           <!-- <a href="/about/">About Me</a> -->
+                           <!-- <a href="/archives/">Archives</a> -->
                         </li>
                         
                     
@@ -256,7 +256,7 @@
 
 </div>
 <ul>
-<li><p><span class="math inline">\(f\)</span> 分解为三个子步骤:1.利用 CNN 从 center view 估计所有 view 的深度图 2.从深度图和 center view warping 出所有 view 3. 使用另一个 CNN 计算残差来修复遮挡和 non-Lambertain 失真 <img src="Screen%20Shot%202017-09-10%20at%2022.42.06.png"> <span class="math inline">\(D,L,L_r,\hat{L}\)</span> 分别是，估计的深度图，训练光场数据，利用 center view 和深度图合成的光场，加上残差来修复遮挡和 non-Lambertain 失真后的光场</p></li>
+<li><p><span class="math inline">\(f\)</span> 分解为三个子步骤:1.利用 CNN 从 center view 估计所有 view 的深度图 2.从深度图和 center view warping 出所有 view 3. 使用另一个 CNN 计算残差来修复遮挡和 non-Lambertain 失真，并与步骤 2 的输出相加 <img src="Screen%20Shot%202017-09-10%20at%2022.42.06.png"> <span class="math inline">\(D,L,L_r,\hat{L}\)</span> 分别是，估计的深度图，训练光场数据，利用 center view 和深度图合成的光场，加上残差来修复遮挡和 non-Lambertain 失真后的光场</p></li>
 <li><p>损失函数 <img src="Screen%20Shot%202017-09-10%20at%2022.42.14.png"> <span class="math inline">\(\psi_c,\psi_{tv}\)</span>是两个正则项，后面会介绍</p></li>
 <li><p>损失函数中包含 <span class="math inline">\(L,L_r\)</span> 的误差项是为了防止遮挡预测网络自己学习使得深度估计网络无法学习到一个合适的深度估计函数</p></li>
 </ul>
@@ -275,7 +275,7 @@
 <li><p>在纹理较少的区域，即使深度估计错误，基于深度的 warping 仍旧可以合成正确的 view</p></li>
 <li><p>遮挡边界处的深度估计往往是不正确的，因为预测正确的深度需要从遮挡处采集像素</p></li>
 <li><p>如果只考虑视合成，那么错误的深度没有很大的影响，但是，如果将视合成看成是一个从单个 2D view 的估计深度的非监督学习算法，那么就需要提升预测的深度图的准确度</p></li>
-<li><p>考虑到不同 view 之间视差一致性，在同一个 slope 上的点深度相同，所以 <img src="Screen%20Shot%202017-09-10%20at%2023.18.03.png"> 取 <span class="math inline">\(k = 1\)</span> ,得到一下正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.07.png"> 又因为错误的深度会导致更大的梯度，所以在采用一个关于梯度的正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.15.png"></p></li>
+<li><p>考虑到不同 view 之间视差一致性，在同一个 slope 上的点深度相同，所以 <img src="Screen%20Shot%202017-09-10%20at%2023.18.03.png"> 取 <span class="math inline">\(k = 1\)</span> ,得到一个正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.07.png"> 又因为错误的深度会导致更大的梯度，所以在采用一个关于梯度的正则项 <img src="Screen%20Shot%202017-09-10%20at%2023.18.15.png"></p></li>
 <li><p>深度估计网络 采用 dilated convolution，batch normalization，exponentially linear unit activation，输出层使用 scaled tanh activation ([-16,16])</p></li>
 </ul>
 <hr>
@@ -311,7 +311,7 @@
 <hr>
 <h4 id="conclusion">Conclusion</h4>
 <ul>
-<li>具有不错的泛化效果，作者演示了用手机相机拍摄的一个场景生成的光场图像的深度图，EPI，以及 refocus 效果</li>
+<li>论证泛化效果，作者演示了用手机相机拍摄的一个场景生成的光场图像的深度图，EPI，以及 refocus 效果</li>
 <li>在一个玩具汽车上尝试了泛化（感觉效果一般）</li>
 </ul>
 <p>​<br>
@@ -322,16 +322,16 @@
                 <hr>
 
                 
-
+<!--
                 <ul class="pager">
                     
                     
                         <li class="next">
-                            <a href="/2017/03/25/VarElimination/" data-toggle="tooltip" data-placement="top" title="Exact Inference">Next Post &rarr;</a>
+                            <a href="/2017/03/21/BayesianNet/" data-toggle="tooltip" data-placement="top" title="Bayesian Network">Next Post &rarr;</a>
                         </li>
                     
                 </ul>
-
+-->
                 
 
                 
