@@ -234,6 +234,11 @@
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool ture;killall Finder</div><div class="line">defaults write com.apple.finder _FXShowPosixPathInTitle -bool <span class="literal">false</span>;killall Finder</div></pre></td></tr></table></figure>
 <hr>
 <ul>
+<li>Dock waiting time</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">defaults write com.apple.Dock autohide-delay -float 0 &amp;&amp; killall Dock</div></pre></td></tr></table></figure>
+<hr>
+<ul>
 <li>check active Internet connection,lsof actually lists all file opened</li>
 </ul>
 <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">[sudo] lsof -nP -i [:port]</div></pre></td></tr></table></figure>
@@ -349,8 +354,8 @@
 <li>Build ssh tunnel <figure class="highlight bash"><table><tr><td class="code"><pre><div class="line">ssh -qnfNT -g -R 6666:localhost:22 -p 12345 user@server_ip</div><div class="line">```bash</div><div class="line">- Use autossh to build tunnel when client startup(reboot),just write <span class="built_in">command</span> below <span class="keyword">in</span> /etc/rc.local script</div><div class="line">```bash</div><div class="line">su <span class="_">-s</span> /bin/sh username -c <span class="string">"autossh -qnfNT -i ~/.ssh/id_rsa -g -R 6666:localhost:22 -p 12345 user@server_ip"</span></div></pre></td></tr></table></figure></li>
 </ul>
 <hr>
-<h5 id="anaconda">Anaconda</h5>
-<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#list packages</span></div><div class="line">conda list</div><div class="line"><span class="comment">#update all packages </span></div><div class="line">conda update conda</div><div class="line"><span class="comment">#create independent python env called "test"</span></div><div class="line">conda create -i <span class="built_in">test</span> [python=3.6]</div><div class="line"><span class="comment">#list current envs</span></div><div class="line">conda info --env</div><div class="line"><span class="comment">#activate env test</span></div><div class="line"><span class="built_in">source</span> activate <span class="built_in">test</span></div><div class="line"><span class="comment">#deactivate</span></div><div class="line"><span class="built_in">source</span> deactivate</div></pre></td></tr></table></figure>
+<h5 id="anaconda-pip">Anaconda &amp; pip</h5>
+<figure class="highlight bash"><table><tr><td class="code"><pre><div class="line"><span class="comment">#list packages</span></div><div class="line">conda list</div><div class="line"><span class="comment">#update all packages </span></div><div class="line">conda update conda</div><div class="line"><span class="comment">#create independent python env called "test"</span></div><div class="line">conda create -i <span class="built_in">test</span> [python=3.6]</div><div class="line"><span class="comment">#list current envs</span></div><div class="line">conda info --env</div><div class="line"><span class="comment">#activate env test</span></div><div class="line"><span class="built_in">source</span> activate <span class="built_in">test</span></div><div class="line"><span class="comment">#deactivate</span></div><div class="line"><span class="built_in">source</span> deactivate</div><div class="line"><span class="comment">#search package via keywords</span></div><div class="line">pip search [keywords]</div><div class="line"><span class="comment">#list all packages</span></div><div class="line">pip list</div><div class="line"><span class="comment">#list outdate packages</span></div><div class="line">pip list -o [--outdated]</div><div class="line"><span class="comment">#show detail information</span></div><div class="line">pip show [package name]</div><div class="line"><span class="comment">#upgrade package</span></div><div class="line">pip install -U [package name]</div></pre></td></tr></table></figure>
 
 
                 <hr>
